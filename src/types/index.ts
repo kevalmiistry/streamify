@@ -1,8 +1,12 @@
+export interface OverviewStatItem {
+    value: number;
+    growth_rate: number;
+}
 export interface OverviewStats {
-    total_users: number;
-    active_users: number;
-    total_streams: number;
-    revenue: number;
+    total_users: OverviewStatItem;
+    active_users: OverviewStatItem;
+    total_streams: OverviewStatItem;
+    revenue: OverviewStatItem;
 }
 
 export interface DashboardData {
