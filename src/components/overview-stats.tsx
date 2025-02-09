@@ -67,7 +67,7 @@ const OverviewStats = ({ overview_stats }: Props) => {
                 </div>
             </div>
 
-            <div className="mt-2 flex items-center gap-6">
+            <div className="mt-2 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                 {STATS.map((item) => (
                     <GlowItem
                         key={item.title}
@@ -76,17 +76,21 @@ const OverviewStats = ({ overview_stats }: Props) => {
                             overview_stats[item.accessorKey].growth_rate > 0 ? "#22c55e" : "#ef4444"
                         }
                     >
-                        <div className="flex-1 rounded-xl border bg-card p-4 text-card-foreground shadow">
-                            <div className="flex items-center gap-2">
-                                <p className="text-lg font-semibold text-accent-foreground">
-                                    {item.title}
+                        <div className="flex h-full flex-1 flex-col justify-between gap-6 rounded-xl border bg-card p-4 text-card-foreground shadow">
+                            <div>
+                                <div className="flex items-center gap-2">
+                                    <p className="text-lg font-semibold text-accent-foreground">
+                                        {item.title}
+                                    </p>
+                                    {item.icon}
+                                </div>
+
+                                <p className="mt-1 text-sm text-muted-foreground">
+                                    {item.subTitle}
                                 </p>
-                                {item.icon}
                             </div>
 
-                            <p className="mt-1 text-sm text-muted-foreground">{item.subTitle}</p>
-
-                            <div className="mt-6 flex items-center gap-2">
+                            <div className="flex items-center gap-2">
                                 <p className="flex text-2xl font-bold">
                                     {item.prefix}
                                     {formatNumber(

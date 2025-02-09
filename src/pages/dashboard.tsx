@@ -20,7 +20,7 @@ const Dashboard = () => {
     }
 
     return dashboardData ? (
-        <GlowArea className="container mx-auto p-6">
+        <GlowArea className="mx-auto max-w-7xl p-6">
             <div className="">
                 <h1 className="text-2xl font-semibold">Streamify Analytics Dashboard</h1>
                 <p className="text-muted-foreground">

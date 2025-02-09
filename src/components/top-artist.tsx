@@ -16,14 +16,14 @@ const TopArtist = ({ top_artist }: Props) => {
                 The Artist who has most streams in the past 30 days.
             </p>
 
-            <div className="mt-4 flex gap-10">
-                <div className="flex gap-6 border-r pr-10">
-                    <GlowItem className="overflow-hidden rounded-xl">
+            <div className="mt-4 flex flex-col gap-10 md:flex-row">
+                <div className="flex gap-6 pr-10 md:border-r">
+                    <GlowItem className="md:w-4h-40 h-36 w-36 shrink-0 overflow-hidden rounded-xl object-contain md:h-40 lg:h-64 lg:w-64">
                         <img
                             src={top_artist.image}
                             alt={top_artist.name}
                             loading="lazy"
-                            className="h-64 w-64"
+                            className="md:w-4h-40 h-36 w-36 shrink-0 object-contain md:h-40 lg:h-64 lg:w-64"
                         />
                     </GlowItem>
 
@@ -69,12 +69,12 @@ const TopArtist = ({ top_artist }: Props) => {
                     </div>
                 </div>
 
-                <div className="">
+                <div>
                     <p className="font-semibold text-accent-foreground">Top 3 Songs</p>
 
                     <div className="mt-4 space-y-2">
                         {top_artist.songs.map((song) => (
-                            <GlowItem className="rounded-md">
+                            <GlowItem key={song.id} className="rounded-md">
                                 <div className="flex items-center gap-2 rounded-md border px-4 py-2">
                                     <div className="flex flex-1 items-center gap-2">
                                         <span>{song.id}.</span>
