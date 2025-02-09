@@ -81,7 +81,7 @@ export const GlowItem = (props: GlowProps) => {
                 }}
                 className={cn(
                     className,
-                    "pointer-events-none absolute inset-0 mix-blend-multiply after:absolute after:inset-0 after:rounded-[inherit] after:bg-background/70 after:content-[''] dark:mix-blend-lighten",
+                    "pointer-events-none absolute inset-0 mix-blend-multiply after:absolute after:inset-px after:rounded-[inherit] after:bg-background/70 after:content-[''] dark:mix-blend-lighten",
                 )}
             ></div>
             {children}

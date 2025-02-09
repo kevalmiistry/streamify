@@ -71,7 +71,9 @@ const OverviewStats = ({ overview_stats }: Props) => {
                 {STATS.map((item) => (
                     <GlowItem
                         className="flex-1 rounded-xl"
-                        color={overview_stats[item.accessorKey].growth_rate > 0 ? "green" : "red"}
+                        color={
+                            overview_stats[item.accessorKey].growth_rate > 0 ? "#22c55e" : "#ef4444"
+                        }
                     >
                         <div
                             key={item.title}
