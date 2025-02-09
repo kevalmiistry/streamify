@@ -2,12 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import { Button } from "@/components/ui/button";
 import { Pause, Play } from "lucide-react";
+import { useActiveSongStore } from "@/store/useActiveSongStore";
 
 interface Props {
     src: string;
 }
 
 const AudioPlayer = ({ src }: Props) => {
+    const activeSong = useActiveSongStore((state) => state.activeSong);
+    const setActiveSong = useActiveSongStore((state) => state.setActiveSong);
+
     const waveSurferRef = useRef<WaveSurfer>(null);
     const waveformContainerRef = useRef<HTMLDivElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -35,11 +39,19 @@ const AudioPlayer = ({ src }: Props) => {
         };
     }, [src]);
 
+    useEffect(() => {
+        if (waveSurferRef.current && src !== activeSong) {
+            waveSurferRef.current.pause();
+            setIsPlaying(false);
+        }
+    }, [activeSong, src]);
+
     const togglePlayPause = () => {
         if (waveSurferRef.current) {
             if (isPlaying) {
                 waveSurferRef.current.pause();
             } else {
+                setActiveSong(src);
                 waveSurferRef.current.play();
             }
             setIsPlaying(!isPlaying);
