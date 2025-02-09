@@ -1,7 +1,7 @@
 import { createServer } from "miragejs";
 import { data } from "./data";
 
-const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
+// const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export const makeServer = () => {
     createServer({
@@ -9,9 +9,12 @@ export const makeServer = () => {
             this.namespace = "api"; // All routes start with /api/
 
             this.get("/dashboard", async () => {
-                await wait(2000);
+                // await wait(2000);
                 return data;
             });
+
+            this.passthrough("https://ik.imagekit.io/**");
+            this.passthrough("/audios/**");
         },
     });
 };

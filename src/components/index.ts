@@ -1,4 +1,5 @@
 import { ModeToggle } from "./mode-toggle";
-import OverviewStatsTypes from "./overview-stats";
+import OverviewStats from "./overview-stats";
+import TopArtist from "./top-artist";
 
-export { ModeToggle, OverviewStatsTypes as OverviewStats };
+export { ModeToggle, OverviewStats, TopArtist };

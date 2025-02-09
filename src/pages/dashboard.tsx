@@ -1,4 +1,4 @@
-import { OverviewStats } from "@/components";
+import { OverviewStats, TopArtist } from "@/components";
 import { GlowArea } from "@/components/glow";
 import { DashboardData } from "@/types";
 import { useQuery } from "@tanstack/react-query";
@@ -20,7 +20,7 @@ const Dashboard = () => {
     }
 
     return dashboardData ? (
-        <GlowArea className="container mx-auto space-y-8 p-6">
+        <GlowArea className="container mx-auto p-6">
             <div className="">
                 <h1 className="text-2xl font-semibold">Streamify Analytics Dashboard</h1>
                 <p className="text-muted-foreground">
@@ -29,6 +29,8 @@ const Dashboard = () => {
             </div>
 
             <OverviewStats overview_stats={dashboardData.overview_stats} />
+
+            <TopArtist top_artist={dashboardData.top_artist} />
         </GlowArea>
     ) : null;
 };

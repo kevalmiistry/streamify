@@ -1,3 +1,19 @@
+export interface Song {
+    id: number;
+    title: string;
+    source: string;
+    streams: number;
+    image: string;
+}
+
+export interface TopArtist {
+    name: string;
+    image: string;
+    totalStreams: number;
+    followers: number;
+    songs: Song[];
+}
+
 export interface OverviewStatItem {
     value: number;
     growth_rate: number;
@@ -11,4 +27,5 @@ export interface OverviewStats {
 
 export interface DashboardData {
     overview_stats: OverviewStats;
+    top_artist: TopArtist;
 }

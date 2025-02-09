@@ -59,7 +59,7 @@ interface GlowProps extends ComponentPropsWithoutRef<"div"> {
 }
 
 export const GlowItem = (props: GlowProps) => {
-    const { className, color = "blue", children, ...rest } = props;
+    const { className, color = "#14b8a6", children, ...rest } = props;
     const element = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

@@ -4,6 +4,15 @@ export default {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
     theme: {
         extend: {
+            keyframes: {
+                shadowMove: {
+                    "0%, 100%": { boxShadow: "0px 0px 15px rgba(20, 184, 166, 0.5)" },
+                    "50%": { boxShadow: "10px 10px 25px rgba(20, 184, 166, 0.7)" },
+                },
+            },
+            animation: {
+                shadowPulse: "shadowMove 4s infinite ease-in-out",
+            },
             fontFamily: {
                 gold: ["gold", "sans-serif"],
             },

@@ -51,7 +51,7 @@ const OverviewStats = ({ overview_stats }: Props) => {
     const [statsViewType, setStatsViewType] = useState<"compact" | "full">("full");
 
     return (
-        <div>
+        <section className="mt-8">
             <div className="flex items-center justify-between">
                 <p className="font-semibold">Overview</p>
 
@@ -70,15 +70,13 @@ const OverviewStats = ({ overview_stats }: Props) => {
             <div className="mt-2 flex items-center gap-6">
                 {STATS.map((item) => (
                     <GlowItem
+                        key={item.title}
                         className="flex-1 rounded-xl"
                         color={
                             overview_stats[item.accessorKey].growth_rate > 0 ? "#22c55e" : "#ef4444"
                         }
                     >
-                        <div
-                            key={item.title}
-                            className="flex-1 rounded-xl border bg-card p-4 text-card-foreground shadow"
-                        >
+                        <div className="flex-1 rounded-xl border bg-card p-4 text-card-foreground shadow">
                             <div className="flex items-center gap-2">
                                 <p className="text-lg font-semibold text-accent-foreground">
                                     {item.title}
@@ -112,7 +110,7 @@ const OverviewStats = ({ overview_stats }: Props) => {
                                     {overview_stats[item.accessorKey].growth_rate > 0 ? (
                                         <ArrowUp className="h-5 w-5 animate-bounce" />
                                     ) : (
-                                        <ArrowDown className="h-5 w-5" />
+                                        <ArrowDown className="h-5 w-5 animate-bounce" />
                                     )}
                                 </div>
                             </div>
@@ -120,7 +118,7 @@ const OverviewStats = ({ overview_stats }: Props) => {
                     </GlowItem>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 
