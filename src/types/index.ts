@@ -25,7 +25,26 @@ export interface OverviewStats {
     revenue: OverviewStatItem;
 }
 
+export interface UserGrowthItem {
+    month: string;
+    total_users: number;
+    active_users: number;
+}
+
+export interface RevenueDistributionItem {
+    source: string;
+    amount: number;
+}
+
+export interface TopStreamedSongItem {
+    song: string;
+    streams: number;
+}
+
 export interface DashboardData {
     overview_stats: OverviewStats;
     top_artist: TopArtist;
+    user_growth: UserGrowthItem[];
+    revenue_distribution: RevenueDistributionItem[];
+    top_streamed_songs: TopStreamedSongItem[];
 }
