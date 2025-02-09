@@ -1,4 +1,4 @@
-import { OverviewStats, TopArtist } from "@/components";
+import { DataVisualization, OverviewStats, TopArtist } from "@/components";
 import { GlowArea } from "@/components/glow";
 import { data } from "@/data";
 import { DashboardData } from "@/types";
@@ -32,6 +32,12 @@ const Dashboard = () => {
             <OverviewStats overview_stats={dashboardData.overview_stats} />
 
             <TopArtist top_artist={dashboardData.top_artist} />
+
+            <DataVisualization
+                user_growth={dashboardData.user_growth}
+                top_streamed_songs={dashboardData.top_streamed_songs}
+                revenue_distribution={dashboardData.revenue_distribution}
+            />
         </GlowArea>
     ) : null;
 };
