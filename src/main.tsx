@@ -4,9 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { makeServer } from "./mirage.ts";
 
-if (process.env.NODE_ENV === "development") {
-    makeServer();
-}
+makeServer();
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
