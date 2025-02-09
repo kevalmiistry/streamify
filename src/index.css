@@ -75,3 +75,7 @@
 body {
     font-family: "Satoshi", sans-serif;
 }
+
+@theme inline {
+    --radius-inherit: inherit;
+}

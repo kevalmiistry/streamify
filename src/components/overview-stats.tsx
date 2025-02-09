@@ -3,6 +3,7 @@ import { OverviewStats as OverviewStatsTypes } from "@/types";
 import { ArrowDown, ArrowUp, AudioLines, Banknote, UserCheck, Users } from "lucide-react";
 import { ReactElement, useState } from "react";
 import { Switch } from "./ui/switch";
+import { GlowItem } from "./glow";
 
 interface Stats {
     title: string;
@@ -68,42 +69,53 @@ const OverviewStats = ({ overview_stats }: Props) => {
 
             <div className="mt-2 flex items-center gap-6">
                 {STATS.map((item) => (
-                    <div key={item.title} className="flex-1 rounded-xl border p-4">
-                        <div className="flex items-center gap-2">
-                            <p className="text-lg font-semibold text-accent-foreground">
-                                {item.title}
-                            </p>
-                            {item.icon}
-                        </div>
+                    <GlowItem
+                        className="flex-1 rounded-xl"
+                        color={overview_stats[item.accessorKey].growth_rate > 0 ? "green" : "red"}
+                    >
+                        <div
+                            key={item.title}
+                            className="flex-1 rounded-xl border bg-card p-4 text-card-foreground shadow"
+                        >
+                            <div className="flex items-center gap-2">
+                                <p className="text-lg font-semibold text-accent-foreground">
+                                    {item.title}
+                                </p>
+                                {item.icon}
+                            </div>
 
-                        <p className="mt-1 text-sm text-muted-foreground">{item.subTitle}</p>
+                            <p className="mt-1 text-sm text-muted-foreground">{item.subTitle}</p>
 
-                        <div className="mt-6 flex items-center gap-2">
-                            <p className="flex text-2xl font-bold">
-                                {item.prefix}
-                                {formatNumber(
-                                    overview_stats[item.accessorKey].value,
-                                    statsViewType === "compact",
-                                )}
-                            </p>
-                            ·
-                            <div
-                                className={cn(
-                                    "text flex items-center gap-1 font-medium",
-                                    overview_stats[item.accessorKey].growth_rate > 0
-                                        ? "text-green-500"
-                                        : "text-red-500",
-                                )}
-                            >
-                                {overview_stats[item.accessorKey].growth_rate.toLocaleString("us")}%
-                                {overview_stats[item.accessorKey].growth_rate > 0 ? (
-                                    <ArrowUp className="h-5 w-5 animate-bounce" />
-                                ) : (
-                                    <ArrowDown className="h-5 w-5" />
-                                )}
+                            <div className="mt-6 flex items-center gap-2">
+                                <p className="flex text-2xl font-bold">
+                                    {item.prefix}
+                                    {formatNumber(
+                                        overview_stats[item.accessorKey].value,
+                                        statsViewType === "compact",
+                                    )}
+                                </p>
+                                ·
+                                <div
+                                    className={cn(
+                                        "text flex items-center gap-1 font-medium",
+                                        overview_stats[item.accessorKey].growth_rate > 0
+                                            ? "text-green-500"
+                                            : "text-red-500",
+                                    )}
+                                >
+                                    {overview_stats[item.accessorKey].growth_rate.toLocaleString(
+                                        "us",
+                                    )}
+                                    %
+                                    {overview_stats[item.accessorKey].growth_rate > 0 ? (
+                                        <ArrowUp className="h-5 w-5 animate-bounce" />
+                                    ) : (
+                                        <ArrowDown className="h-5 w-5" />
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </GlowItem>
                 ))}
             </div>
         </div>
