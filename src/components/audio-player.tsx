@@ -3,70 +3,66 @@ import WaveSurfer from "wavesurfer.js";
 import { Button } from "@/components/ui/button";
 import { Pause, Play } from "lucide-react";
 
-interface AudioPlayerProps {
+interface Props {
     src: string;
 }
 
-const AudioPlayer = ({ src }: AudioPlayerProps) => {
-    const waveSurferRef = useRef<WaveSurfer | null>(null);
-    const waveformContainerRef = useRef<HTMLDivElement | null>(null);
+const AudioPlayer = ({ src }: Props) => {
+    const waveSurferRef = useRef<WaveSurfer>(null);
+    const waveformContainerRef = useRef<HTMLDivElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
-        if (!waveformContainerRef.current) return;
+        if (waveformContainerRef.current) {
+            waveSurferRef.current = WaveSurfer.create({
+                container: waveformContainerRef.current,
+                waveColor: "#cbd5e1",
+                progressColor: "#14b8a6",
+                cursorWidth: 0,
+                barWidth: 3,
+                barHeight: 2, // Increased for visibility
+                barGap: 3,
+                height: 30,
+                barRadius: 9999,
+                fillParent: true,
+            });
 
-        waveSurferRef.current = WaveSurfer.create({
-            container: waveformContainerRef.current,
-            waveColor: "#cbd5e1",
-            progressColor: "#3b82f6",
-            cursorWidth: 0,
-            barWidth: 3,
-            barGap: 3,
-            height: 40,
-            barRadius: 2,
-        });
-
-        waveSurferRef.current.load(src);
-
-        waveSurferRef.current.on("ready", () => {
-            console.log("Wavesurfer Ready");
-        });
+            waveSurferRef.current.load(src);
+        }
 
         return () => {
             waveSurferRef.current?.destroy();
         };
     }, [src]);
 
-    const handlePlayPause = () => {
-        if (!waveSurferRef.current) return;
-
-        if (waveSurferRef.current.isPlaying()) {
-            waveSurferRef.current.pause();
-            setIsPlaying(false);
-        } else {
-            waveSurferRef.current.play();
-            setIsPlaying(true);
+    const togglePlayPause = () => {
+        if (waveSurferRef.current) {
+            if (isPlaying) {
+                waveSurferRef.current.pause();
+            } else {
+                waveSurferRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
         }
     };
 
     return (
-        <div className="flex w-[250px] items-center p-1">
-            <Button
-                variant="ghost"
-                className="flex aspect-square shrink-0 items-center justify-center p-0"
-                onClick={handlePlayPause}
-            >
-                {isPlaying ? (
-                    <Pause size="1rem" className="text-slate-600" />
-                ) : (
-                    <Play size="1rem" className="text-slate-600" />
-                )}
-            </Button>
-
-            {/* Waveform container */}
-            <div className="relative mx-2 h-[40px] w-full">
-                <div ref={waveformContainerRef} className="h-full w-full" />
+        <div className="flex w-full items-center md:w-[200px]">
+            <div className="flex items-center">
+                <Button
+                    size="icon"
+                    variant="ghost"
+                    className="flex shrink-0 items-center justify-center p-0"
+                    onClick={togglePlayPause}
+                >
+                    {isPlaying ? (
+                        <Pause size="1rem" className="text-foreground" />
+                    ) : (
+                        <Play size="1rem" className="text-foreground" />
+                    )}
+                </Button>
             </div>
+            <div ref={waveformContainerRef} className="mx-2 h-[30px] w-full flex-grow" />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { GlowItem } from "./glow";
 import { AudioLines, Music2, UsersRound } from "lucide-react";
 import { formatNumber } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-// import AudioPlayer from "./audio-player";
+import AudioPlayer from "./audio-player";
 
 interface Props {
     top_artist: TopArtistType;
@@ -28,9 +28,9 @@ const TopArtist = ({ top_artist }: Props) => {
                     </GlowItem>
 
                     <div className="mt-4">
-                        <p className="flex items-center gap-2 text-4xl font-semibold">
+                        <p className="flex items-center gap-2 text-2xl font-semibold md:text-4xl">
                             {top_artist.name}
-                            <Music2 className="h-7 w-7" strokeWidth="3px" />
+                            <Music2 className="h-4 w-4 md:h-7 md:w-7" strokeWidth="3px" />
                         </p>
 
                         <div className="mt-4 flex items-center gap-2">
@@ -75,7 +75,7 @@ const TopArtist = ({ top_artist }: Props) => {
                     <div className="mt-4 space-y-2">
                         {top_artist.songs.map((song) => (
                             <GlowItem key={song.id} className="rounded-md">
-                                <div className="flex items-center gap-2 rounded-md border px-4 py-2">
+                                <div className="flex flex-col gap-4 rounded-md border px-4 py-2 md:flex-row md:items-center md:gap-2">
                                     <div className="flex flex-1 items-center gap-2">
                                         <span>{song.id}.</span>
                                         <img
@@ -101,7 +101,7 @@ const TopArtist = ({ top_artist }: Props) => {
                                         </TooltipProvider>
                                     </div>
 
-                                    {/* <AudioPlayer src={song.source} /> */}
+                                    <AudioPlayer src={song.source} />
                                 </div>
                             </GlowItem>
                         ))}

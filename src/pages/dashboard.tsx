@@ -1,11 +1,12 @@
 import { OverviewStats, TopArtist } from "@/components";
 import { GlowArea } from "@/components/glow";
+import { data } from "@/data";
 import { DashboardData } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 const getDashboardData = async (): Promise<DashboardData> => {
-    const { data } = await axios.get<DashboardData>("/api/dashboard");
+    const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
+    await wait(2000);
     return data;
 };
 
