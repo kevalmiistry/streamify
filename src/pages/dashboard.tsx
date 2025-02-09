@@ -1,4 +1,5 @@
 import { DataVisualization, OverviewStats, TopArtist } from "@/components";
+import DashboardSkeleton from "@/components/dashboard-skeleton";
 import { GlowArea } from "@/components/glow";
 import { data } from "@/data";
 import { DashboardData } from "@/types";
@@ -17,12 +18,12 @@ const Dashboard = () => {
     });
 
     if (isLoading) {
-        return <>loading...</>;
+        return <DashboardSkeleton />;
     }
 
     return dashboardData ? (
         <GlowArea className="mx-auto max-w-7xl p-6">
-            <div className="">
+            <div>
                 <h1 className="text-2xl font-semibold">Streamify Analytics Dashboard</h1>
                 <p className="text-muted-foreground">
                     Track key metrics, visualize trends, and dive into detailed streaming insights.
