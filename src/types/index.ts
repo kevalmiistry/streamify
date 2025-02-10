@@ -1,3 +1,10 @@
+import { ColumnDef } from "@tanstack/react-table";
+
+export type CustomColumnDef<TData, TValue> = ColumnDef<TData, TValue> & {
+    isSticky?: boolean;
+    fixedWidth?: number;
+};
+
 export interface Song {
     id: number;
     title: string;
