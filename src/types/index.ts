@@ -41,10 +41,29 @@ export interface TopStreamedSongItem {
     streams: number;
 }
 
+export interface SongsDataItem {
+    song_id: string;
+    artist_id: string;
+    main_artist_name: string;
+    featured_artist: string;
+    date_streamed: string;
+    released_date: string;
+    streams_count: number;
+    song_title: string;
+    album_name: string;
+    genre: string;
+    duration: string;
+    record_label: string;
+    main_artist_profile_image: string;
+    featured_artist_profile_image: string;
+    song_cover_image: string;
+}
+
 export interface DashboardData {
     overview_stats: OverviewStats;
     top_artist: TopArtist;
     user_growth: UserGrowthItem[];
     revenue_distribution: RevenueDistributionItem[];
     top_streamed_songs: TopStreamedSongItem[];
+    songs_data: SongsDataItem[];
 }
