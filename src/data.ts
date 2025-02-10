@@ -27,21 +27,21 @@ export const data: DashboardData = {
         songs: [
             {
                 id: 1,
-                source: "https://ik.imagekit.io/culturex/SocialAudio/instagram/516926864308616/516926864308616.mp3",
+                source: "./audios/Timeless.mp3",
                 streams: 61_789_382,
                 title: "Timeless (feat Playboi Carti)",
                 image: "./images/timeless.webp",
             },
             {
                 id: 2,
-                source: "https://ik.imagekit.io/culturex/SocialAudio/instagram/1124536642219082/1124536642219082.mp3",
+                source: "./audios/Niagara-Falls.mp3",
                 streams: 37_073_629,
                 title: "Niagara Falls",
                 image: "./images/harry-up-tomorrow.jpeg",
             },
             {
                 id: 3,
-                source: "https://ik.imagekit.io/culturex/SocialAudio/instagram/915733083725803/915733083725803.mp3",
+                source: "./audios/Take-Me-Back-To-LA.mp3",
                 streams: 24_715_753,
                 title: "Take Me Back To LA",
                 image: "./images/harry-up-tomorrow.jpeg",

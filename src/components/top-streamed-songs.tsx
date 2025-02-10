@@ -23,14 +23,14 @@ interface Props {
 }
 const TopStreamedSongs = ({ top_streamed_songs }: Props) => {
     return (
-        <Card>
+        <Card className="h-full">
             <CardHeader className="h-24">
-                <CardTitle>Bar Chart - Label</CardTitle>
+                <CardTitle>Top 5 Streamed Songs</CardTitle>
                 <CardDescription>
                     Shows the top 5 most-streamed songs over the past 30 days.
                 </CardDescription>
             </CardHeader>
-            <CardContent className="h-[280px]">
+            <CardContent className="h-[300px] pb-0">
                 <ChartContainer config={chartConfig} className="h-full w-full">
                     <BarChart
                         accessibilityLayer

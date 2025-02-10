@@ -35,7 +35,7 @@ const UserGrowthChart = ({ user_growth }: Props) => {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <ChartContainer config={chartConfig} className="h-[280px] w-full">
+                <ChartContainer config={chartConfig} className="h-[300px] w-full">
                     <LineChart
                         accessibilityLayer
                         data={user_growth}

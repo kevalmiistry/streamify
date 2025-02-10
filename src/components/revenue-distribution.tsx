@@ -65,7 +65,7 @@ const RevenueDistribution = ({ revenue_distribution }: Props) => {
         <Card data-chart={id} className="flex flex-col">
             <ChartStyle id={id} config={chartConfig} />
 
-            <CardHeader className="h-24 flex-row items-start space-y-0 pb-0">
+            <CardHeader className="h-24 flex-row items-start gap-2 space-y-0 pb-0">
                 <div className="grid gap-1">
                     <CardTitle>Revenue Distribution</CardTitle>
                     <CardDescription>
@@ -111,11 +111,11 @@ const RevenueDistribution = ({ revenue_distribution }: Props) => {
                 </Select>
             </CardHeader>
 
-            <CardContent className="flex h-[280px] flex-1 justify-center">
+            <CardContent className="flex h-[300px] flex-1 justify-center">
                 <ChartContainer
                     id={id}
                     config={chartConfig}
-                    className="mx-auto aspect-square h-full w-full max-w-[255px]"
+                    className="mx-auto aspect-square h-[300px] w-full"
                 >
                     <PieChart>
                         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
