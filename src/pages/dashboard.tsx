@@ -1,4 +1,4 @@
-import { DataVisualization, OverviewStats, TopArtist } from "@/components";
+import { DataVisualization, OverviewStats, SongsDataTable, TopArtist } from "@/components";
 import DashboardSkeleton from "@/components/dashboard-skeleton";
 import { GlowArea } from "@/components/glow";
 import { data } from "@/data";
@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const getDashboardData = async (): Promise<DashboardData> => {
     const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
-    await wait(2000);
+    await wait(100);
     return data;
 };
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
     }
 
     return dashboardData ? (
-        <GlowArea className="mx-auto max-w-7xl p-6">
+        <GlowArea className="mx-auto max-w-7xl p-6 pb-0">
             <div>
                 <h1 className="text-2xl font-semibold">Streamify Analytics Dashboard</h1>
                 <p className="text-muted-foreground">
@@ -39,6 +39,8 @@ const Dashboard = () => {
                 top_streamed_songs={dashboardData.top_streamed_songs}
                 revenue_distribution={dashboardData.revenue_distribution}
             />
+
+            <SongsDataTable songs_data={dashboardData.songs_data} />
         </GlowArea>
     ) : null;
 };

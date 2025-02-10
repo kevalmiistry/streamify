@@ -1,5 +1,3 @@
-"use client";
-
 import {
     ColumnFiltersState,
     flexRender,
@@ -51,6 +49,7 @@ export function DataTableWithStickyColumns<TData, TValue>({
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = useState({});
+    const [globalFilter, setGlobalFilter] = useState("");
 
     const table = useReactTable({
         data,
@@ -63,12 +62,15 @@ export function DataTableWithStickyColumns<TData, TValue>({
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: setColumnVisibility,
         onRowSelectionChange: setRowSelection,
+        onGlobalFilterChange: setGlobalFilter,
         state: {
             sorting,
             columnFilters,
             columnVisibility,
             rowSelection,
+            globalFilter,
         },
+        globalFilterFn: "includesString",
     });
 
     const getStickyProperties = (idx: number) => {
@@ -104,11 +106,9 @@ export function DataTableWithStickyColumns<TData, TValue>({
         <div className="flex flex-1 flex-col gap-4 overflow-hidden p-4">
             <div className="flex items-center justify-between">
                 <Input
-                    placeholder="Search by name..."
-                    value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn("name")?.setFilterValue(event.target.value)
-                    }
+                    placeholder="Search..."
+                    value={globalFilter}
+                    onChange={(event) => setGlobalFilter(event.target.value)}
                     className="max-w-sm"
                 />
 

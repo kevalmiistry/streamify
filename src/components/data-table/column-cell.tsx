@@ -1,5 +1,5 @@
-import { CustomColumnDef } from "@/app/columns";
 import { cn } from "@/lib/utils";
+import type { CustomColumnDef } from "@/types";
 import { Column } from "@tanstack/react-table";
 import type { ReactNode } from "react";
 
