@@ -49,6 +49,7 @@ export interface TopStreamedSongItem {
 }
 
 export interface SongsDataItem {
+    isGroup: false;
     song_id: string;
     artist_id: string;
     main_artist_name: string;
@@ -66,6 +67,14 @@ export interface SongsDataItem {
     song_cover_image: string;
 }
 
+export interface GroupedByArtistItem {
+    isGroup: true;
+    artist_id: string;
+    main_artist_name: string;
+    main_artist_profile_image: string;
+    songs: SongsDataItem[];
+}
+
 export interface DashboardData {
     overview_stats: OverviewStats;
     top_artist: TopArtist;
@@ -73,4 +82,7 @@ export interface DashboardData {
     revenue_distribution: RevenueDistributionItem[];
     top_streamed_songs: TopStreamedSongItem[];
     songs_data: SongsDataItem[];
+    grouped_by_artist_data: GroupedByArtistItem[];
 }
+
+export type SelectedSong = Record<SongsDataItem["artist_id"], SongsDataItem["song_id"]>;

@@ -40,7 +40,10 @@ const Dashboard = () => {
                 revenue_distribution={dashboardData.revenue_distribution}
             />
 
-            <SongsDataTable songs_data={dashboardData.songs_data} />
+            <SongsDataTable
+                songs_data={dashboardData.songs_data}
+                grouped_by_artist_data={dashboardData.grouped_by_artist_data}
+            />
         </GlowArea>
     ) : null;
 };

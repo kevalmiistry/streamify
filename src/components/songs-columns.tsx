@@ -1,8 +1,9 @@
-import { CustomColumnDef, SongsDataItem } from "@/types";
+import { GroupedByArtistItem, CustomColumnDef, SongsDataItem } from "@/types";
 import { ColumnHeader } from "./data-table/column-header";
 import { ColumnCell } from "./data-table/column-cell";
 import { Disc, DiscAlbum } from "lucide-react";
-import { formatDate, formatNumber } from "@/lib/utils";
+import CommonColumnCell from "./common-column-cell";
+import ArtistWithSongSelectCell from "./artist-with-song-select-cell";
 
 export const groupingModeOffColumns: CustomColumnDef<SongsDataItem, unknown>[] = [
     {
@@ -34,7 +35,7 @@ export const groupingModeOffColumns: CustomColumnDef<SongsDataItem, unknown>[] =
             </ColumnCell>
         ),
         isSticky: true,
-        fixedWidth: 400,
+        fixedWidth: 350,
         enableHiding: false,
     },
     {
@@ -63,7 +64,38 @@ export const groupingModeOffColumns: CustomColumnDef<SongsDataItem, unknown>[] =
     },
 ];
 
-export const commonColumns: CustomColumnDef<SongsDataItem, unknown>[] = [
+export const groupingModeOnColumns: CustomColumnDef<GroupedByArtistItem, unknown>[] = [
+    {
+        accessorKey: "main_artist_name",
+        header: ({ column }) => (
+            <ColumnHeader column={column} className="pl-5">
+                Artist
+            </ColumnHeader>
+        ),
+        cell: ({ row: { original }, column }) => (
+            <ColumnCell column={column} className="px-4 py-2">
+                <ArtistWithSongSelectCell original={original} />
+            </ColumnCell>
+        ),
+        isSticky: true,
+        fixedWidth: 350,
+    },
+    {
+        accessorKey: "song_title",
+        header: ({ column }) => (
+            <ColumnHeader column={column} className="pl-5">
+                Song Title
+            </ColumnHeader>
+        ),
+        cell: ({ row: { original }, column }) => (
+            <ColumnCell column={column} className="flex w-max items-center gap-2 px-4 py-2">
+                <CommonColumnCell accessorKey="song_title" original={original} />
+            </ColumnCell>
+        ),
+    },
+];
+
+export const commonColumns: CustomColumnDef<SongsDataItem | GroupedByArtistItem, unknown>[] = [
     {
         accessorKey: "featured_artist",
         header: ({ column }) => (
@@ -172,19 +204,3 @@ export const commonColumns: CustomColumnDef<SongsDataItem, unknown>[] = [
         ),
     },
 ];
-
-interface Props {
-    accessorKey: keyof SongsDataItem;
-    original: SongsDataItem;
-}
-const CommonColumnCell = ({ accessorKey, original }: Props) => {
-    if (typeof original[accessorKey] === "number") {
-        return formatNumber(original[accessorKey], false);
-    }
-
-    if (accessorKey === "date_streamed" || accessorKey === "released_date") {
-        return formatDate(original[accessorKey]);
-    }
-
-    return original[accessorKey] || "-";
-};

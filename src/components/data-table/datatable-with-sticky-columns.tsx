@@ -17,7 +17,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { useMemo, useState } from "react";
+import { ReactElement, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DataTablePagination } from "./datatable-pagination";
 import { Input } from "@/components/ui/input";
@@ -34,12 +34,14 @@ interface DataTableProps<TData, TValue> {
     columns: CustomColumnDef<TData, TValue>[];
     data: TData[];
     enableStickyCols?: boolean;
+    children?: ReactElement;
 }
 
 export function DataTableWithStickyColumns<TData, TValue>({
     columns,
     data,
     enableStickyCols = false,
+    children,
 }: DataTableProps<TData, TValue>) {
     const stickyColsPoints: number[] = useMemo(() => {
         return columns.filter((item) => item.isSticky).map((item) => item.fixedWidth ?? 0);
@@ -105,12 +107,15 @@ export function DataTableWithStickyColumns<TData, TValue>({
     return (
         <div className="flex flex-1 flex-col gap-4 overflow-hidden p-4">
             <div className="flex items-center justify-between">
-                <Input
-                    placeholder="Search..."
-                    value={globalFilter}
-                    onChange={(event) => setGlobalFilter(event.target.value)}
-                    className="max-w-sm"
-                />
+                <div className="flex flex-1 items-center gap-2">
+                    <Input
+                        placeholder="Search..."
+                        value={globalFilter}
+                        onChange={(event) => setGlobalFilter(event.target.value)}
+                        className="w-[250px]"
+                    />
+                    {children}
+                </div>
 
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
