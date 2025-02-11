@@ -18,6 +18,14 @@ interface StoreType {
     setEnabledFilters: SetStateType<EnabledFilters>;
     dateStreamedFilter: DateRange | undefined;
     setDateStreamedFilter: SetStateType<DateRange | undefined>;
+    streamsCountFilter: {
+        from: number | undefined;
+        to: number | undefined;
+    };
+    setStreamsCountFilter: SetStateType<{
+        from: number | undefined;
+        to: number | undefined;
+    }>;
 }
 
 export const useSongsDataTableStore = create<StoreType>((set) => ({
@@ -47,6 +55,16 @@ export const useSongsDataTableStore = create<StoreType>((set) => ({
         set((state) => ({
             dateStreamedFilter:
                 typeof value === "function" ? value(state.dateStreamedFilter) : value,
+        }));
+    },
+    streamsCountFilter: {
+        from: undefined,
+        to: undefined,
+    },
+    setStreamsCountFilter: (value) => {
+        set((state) => ({
+            streamsCountFilter:
+                typeof value === "function" ? value(state.streamsCountFilter) : value,
         }));
     },
 }));

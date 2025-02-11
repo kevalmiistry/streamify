@@ -79,3 +79,7 @@ body {
 @theme inline {
     --radius-inherit: inherit;
 }
+
+.hide-steppers {
+    @apply appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none;
+}

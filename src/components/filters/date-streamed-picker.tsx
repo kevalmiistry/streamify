@@ -10,8 +10,6 @@ const DateStreamedPicker = () => {
     const dateStreamedFilter = useSongsDataTableStore((state) => state.dateStreamedFilter);
     const setDateStreamedFilter = useSongsDataTableStore((state) => state.setDateStreamedFilter);
 
-    console.log("dateStreamedFilter", dateStreamedFilter);
-
     return (
         <div className="grid gap-2">
             <Popover>

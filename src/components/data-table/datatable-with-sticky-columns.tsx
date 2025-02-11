@@ -21,14 +21,15 @@ import { ReactElement, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DataTablePagination } from "./datatable-pagination";
 import { Input } from "@/components/ui/input";
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+// import {
+//     DropdownMenu,
+//     DropdownMenuCheckboxItem,
+//     DropdownMenuContent,
+//     DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
+// import { Button } from "@/components/ui/button";
 import { CustomColumnDef } from "@/types";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface DataTableProps<TData, TValue> {
     columns: CustomColumnDef<TData, TValue>[];
@@ -43,6 +44,8 @@ export function DataTableWithStickyColumns<TData, TValue>({
     enableStickyCols = false,
     children,
 }: DataTableProps<TData, TValue>) {
+    const isMobile = useIsMobile();
+
     const stickyColsPoints: number[] = useMemo(() => {
         return columns.filter((item) => item.isSticky).map((item) => item.fixedWidth ?? 0);
     }, [columns]);
@@ -106,8 +109,8 @@ export function DataTableWithStickyColumns<TData, TValue>({
 
     return (
         <div className="flex flex-1 flex-col gap-4 overflow-hidden py-4">
-            <div className="flex items-center justify-between">
-                <div className="flex flex-1 items-center gap-2">
+            <div className="flex w-full items-center justify-between">
+                <div className="w-full space-y-2">
                     <Input
                         placeholder="Search..."
                         value={globalFilter}
@@ -117,7 +120,7 @@ export function DataTableWithStickyColumns<TData, TValue>({
                     {children}
                 </div>
 
-                <DropdownMenu>
+                {/* <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" className="ml-auto">
                             Manage Columns
@@ -138,7 +141,7 @@ export function DataTableWithStickyColumns<TData, TValue>({
                                 </DropdownMenuCheckboxItem>
                             ))}
                     </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> */}
             </div>
 
             <div className="relative z-[0] h-full w-full flex-1 overflow-auto rounded-md border">
@@ -151,7 +154,9 @@ export function DataTableWithStickyColumns<TData, TValue>({
                                         key={header.id}
                                         className={cn(
                                             "h-fit whitespace-nowrap bg-background",
-                                            enableStickyCols ? className.getThClassName(idx) : "",
+                                            enableStickyCols && !isMobile
+                                                ? className.getThClassName(idx)
+                                                : "",
                                             {
                                                 "sticky top-0":
                                                     table.getRowModel().rows?.length > 0,
@@ -182,7 +187,9 @@ export function DataTableWithStickyColumns<TData, TValue>({
                                             key={cell.id}
                                             className={cn(
                                                 "",
-                                                enableStickyCols ? className.getTdClasses(idx) : "",
+                                                enableStickyCols && !isMobile
+                                                    ? className.getTdClasses(idx)
+                                                    : "",
                                             )}
                                             style={getStickyProperties(idx)}
                                         >
