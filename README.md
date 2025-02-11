@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# Streamify Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/cf893148-7391-4d4f-8130-cafae8feed22" />
 
-Currently, two official plugins are available:
+#### [Live Link 🚀](https://streamify-dashboard-ten.vercel.app/)
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Intro
 
-## Expanding the ESLint configuration
+Home Assignment from **SpeedyBrand** for Frontend Engineer role
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+### Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+React, TypeScript, TailwindCSS, Shadcn, Zustand, Vite
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Thought Process
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Used **React with Vite** (No meta-framework) as per the project guidelines.
+- Used **TypeScript** for:
+  - Better type safety & IntelliSense.
+  - Reduced runtime errors.
+  - Improved code maintainability.
+- Used **Tailwind CSS & ShadCN UI** for:
+  - Rapid development with utility-first styling.
+  - Consistent & accessible UI components.
+  - Easy customization and theming.
+- Used **Zustand** for handling complex global state because:
+  - It minimizes unnecessary re-renders.
+  - It improves performance and scalability.
+  - Based on my experience, an efficient global state-management approach is crucial in React apps.
+
+---
+
+### Project Goals
+- Ensured the dashboard is **modern, functional, and fully responsive**.
+- Prioritized **performance, usability, and clean architecture**.
+
+---
+
+### Local setup guide:
+- clone the repository locally by running: `git clone https://github.com/kevalmiistry/streamify.git streamify`
+- run: `cd streamify`
+- run: `npm install`
+- run: `npm run dev`
+- Done ✔️
