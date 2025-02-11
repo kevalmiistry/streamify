@@ -105,7 +105,7 @@ export function DataTableWithStickyColumns<TData, TValue>({
     };
 
     return (
-        <div className="flex flex-1 flex-col gap-4 overflow-hidden p-4">
+        <div className="flex flex-1 flex-col gap-4 overflow-hidden py-4">
             <div className="flex items-center justify-between">
                 <div className="flex flex-1 items-center gap-2">
                     <Input

@@ -1,13 +1,23 @@
 import { SelectedSong } from "@/types";
+import { DateRange } from "react-day-picker";
 import { create } from "zustand";
 
 type SetStateType<T> = (value: T | ((current: T) => T)) => void;
+
+interface EnabledFilters {
+    dateStreamed: boolean;
+    streamCount: boolean;
+}
 
 interface StoreType {
     groupingModeOn: boolean;
     setGroupingModeOn: SetStateType<boolean>;
     selectedSong: SelectedSong;
     setSelectedSong: SetStateType<SelectedSong>;
+    enabledFilters: EnabledFilters;
+    setEnabledFilters: SetStateType<EnabledFilters>;
+    dateStreamedFilter: DateRange | undefined;
+    setDateStreamedFilter: SetStateType<DateRange | undefined>;
 }
 
 export const useSongsDataTableStore = create<StoreType>((set) => ({
@@ -21,6 +31,22 @@ export const useSongsDataTableStore = create<StoreType>((set) => ({
     setSelectedSong: (value) => {
         set((state) => ({
             selectedSong: typeof value === "function" ? value(state.selectedSong) : value,
+        }));
+    },
+    enabledFilters: {
+        dateStreamed: false,
+        streamCount: false,
+    },
+    setEnabledFilters: (value) => {
+        set((state) => ({
+            enabledFilters: typeof value === "function" ? value(state.enabledFilters) : value,
+        }));
+    },
+    dateStreamedFilter: undefined,
+    setDateStreamedFilter: (value) => {
+        set((state) => ({
+            dateStreamedFilter:
+                typeof value === "function" ? value(state.dateStreamedFilter) : value,
         }));
     },
 }));
