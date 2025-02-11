@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const getDashboardData = async (): Promise<DashboardData> => {
     const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
-    await wait(100);
+    await wait(1500);
     return data;
 };
 
